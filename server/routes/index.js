@@ -16,7 +16,7 @@ router.get('/:category/category', articleCtrl.getByCategory)
 
 router.put('/:id', articleCtrl.put)
 
-router.delete('/:id', articleCtrl.del)
+router.delete('/:id/:token', articleCtrl.del)
 
 router.post('/', articleCtrl.post)
 

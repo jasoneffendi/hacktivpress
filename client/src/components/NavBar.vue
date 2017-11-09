@@ -13,6 +13,9 @@
       <li class="nav-item">
         <router-link to="/register" class="nav-link" href="#">Register</router-link>
       </li>
+      <li class="nav-item">
+        <router-link to="/post" class="nav-link" href="#">Post</router-link>
+      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Username" ref='username'>

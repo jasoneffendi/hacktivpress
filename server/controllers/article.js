@@ -84,7 +84,7 @@ class articleCtrl{
     }
 
     static del(req,res) {
-        var opentoken = jwt.verify(req.body.token, 'press')
+        var opentoken = jwt.verify(req.params.token, 'press')
         Article.findOne({_id: req.params.id})
         .then((result,err) => {
             if(err) return res.send(err)
