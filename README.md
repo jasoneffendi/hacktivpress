@@ -10,12 +10,21 @@ List of user routes:
 
 | Route | HTTP | Description |
 | :----------- |	:---------- | ---------- |
-| [`/api/users`][3] | GET | Get all the users |
-| [`/api/users/:id`][3] | GET | Get a single user |
-| [`/api/users`][3] | POST | Create a user |
-| [`/api/users/:id`][3] | DELETE | Delete a user |
-| [`/api/users/:id`][3] | PUT | Update a user with new info |
-| [`/api/users/:id`][3] | PATCH | Update a user with specific new info |
+| [`/users`][3] | GET | Get all the users |
+| [`/users/info`][3] | POST | Send token to get a single user info |
+| [`/users`][3] | POST | Create a user |
+| [`/users/login`][3] | POST | Login user to get jwt token |
+
+List of articles routes:
+
+| Route | HTTP | Description |
+| :----------- |	:---------- | ---------- |
+| [`/`][3] | GET | Get all the articles |
+| [`/:id/details`][3] | GET | Get article info by id |
+| [`/:id/author`][3] | GET | Get article info by author |
+| [`/:category/category`][3] | GET | Get article info by category search |
+| [`/:id`][3] | PUT | Edit article info |
+| [`/`][3] | POST | Post a new article |
 
 Usage
 Run client only with npm:
