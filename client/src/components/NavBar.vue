@@ -8,25 +8,40 @@
   <div class="collapse navbar-collapse" id="navbarColor03">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <router-link to="/" class="nav-link" href="#">Home</router-link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
+        <router-link to="/register" class="nav-link" href="#">Register</router-link>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      <input class="form-control mr-sm-2" type="text" placeholder="Username" ref='username'>
+      <input class="form-control mr-sm-2" type="password" placeholder="Password" ref='password'>
+      <button class="btn btn-secondary my-2 my-sm-0" @click.prevent="login()">Login</button>
     </form>
   </div>
 </nav>
 </template>
 
 <script>
+import router from '@/router/index'
+export default {
+  methods: {
+    login () {
+      this.$http.post('/users/login', {
+        username: this.$refs.username.value,
+        password: this.$refs.password.value
+      })
+      .then(({data}) => {
+        console.log(data)
+        localStorage.setItem('pressToken', data)
+        router.go('/')
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      console.log(this.$refs.username.value)
+    }
+  }
+}
 </script>
