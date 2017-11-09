@@ -7,8 +7,9 @@
   <p>{{ content.content }}</p>
   <br>
   <br>
-  <p> written by : {{ content.author.username }}</p>
+  <p> written by : {{ content.author.username }} | under category: {{ content.category }}</p>
 </div>
+<div>
 <form>
   <fieldset>
     <legend>Edit content</legend>
@@ -26,6 +27,7 @@
 </form>
 <br>
 <button type="submit" class="btn btn-primary" @click.prevent="del()">Delete</button>
+</div>
 </div>
 </template>
 
@@ -49,24 +51,39 @@ export default {
       })
     },
     edit () {
-      var title = this.$refs.title.value
-      var content = this.$refs.content.value
-      if (content === '') {
-        content = this.content.content
-      }
-      if (title === '') {
-        title = this.content.title
-      }
-      this.$http.put('/' + this.id, {
-        token: localStorage.getItem('pressToken'),
-        title: title,
-        content: content
+      this.$http.post('/info', {
+        token: localStorage.getItem('pressToken')
       })
       .then(({data}) => {
         console.log(data)
+        if (data === this.content.author._id) {
+          var title = this.$refs.title.value
+          var content = this.$refs.content.value
+          if (content === '') {
+            content = this.content.content
+          }
+          if (title === '') {
+            title = this.content.title
+          }
+          this.$http.put('/' + this.id, {
+            token: localStorage.getItem('pressToken'),
+            title: title,
+            content: content
+          })
+          .then(({data}) => {
+            console.log(data)
+          })
+          .catch(err => {
+            console.log(err)
+            alert('You are not authorized to change this content')
+          })
+        } else {
+          alert('You are not authorized to change this content')
+        }
       })
       .catch(err => {
         console.log(err)
+        alert('You are not authorized to change this content')
       })
     },
     del () {

@@ -10,6 +10,8 @@ router.get('/', userCtrl.get);
 
 router.post('/', userCtrl.post)
 
+router.post('/info', userCtrl.getOne)
+
 router.post('/login', userCtrl.login)
 
 module.exports = router;

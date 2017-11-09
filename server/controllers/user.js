@@ -11,6 +11,16 @@ class userCtrl{
         })
     }
 
+    static getOne(req,res) {
+        var opentoken = jwt.verify(req.body.token)
+        User.findOne({_id: opentoken.id})
+        .then((result,err) => {
+            if(err) return res.send(err)
+
+            res.send(result._id)
+        })
+    }
+
     static post(req,res) {
         var newUser = new User(req.body)
 

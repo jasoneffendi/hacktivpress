@@ -17,10 +17,13 @@
         <router-link to="/post" class="nav-link" href="#">Post</router-link>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <form class="form-inline my-2 my-lg-0" v-if="typeof token !== 'string'">
       <input class="form-control mr-sm-2" type="text" placeholder="Username" ref='username'>
       <input class="form-control mr-sm-2" type="password" placeholder="Password" ref='password'>
       <button class="btn btn-secondary my-2 my-sm-0" @click.prevent="login()">Login</button>
+    </form>
+    <form v-else>
+      <button class="btn btn-secondary my-2 my-sm-0" @click.prevent="logout()">Logout</button>
     </form>
   </div>
 </nav>
@@ -29,6 +32,11 @@
 <script>
 import router from '@/router/index'
 export default {
+  data () {
+    return {
+      token: ''
+    }
+  },
   methods: {
     login () {
       this.$http.post('/users/login', {
@@ -44,7 +52,14 @@ export default {
         console.log(err)
       })
       console.log(this.$refs.username.value)
+    },
+    logout () {
+      localStorage.removeItem('pressToken')
+      router.go('/')
     }
+  },
+  mounted () {
+    this.token = localStorage.getItem('pressToken')
   }
 }
 </script>
