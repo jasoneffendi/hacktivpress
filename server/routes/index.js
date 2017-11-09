@@ -1,6 +1,9 @@
 var express = require('express');
+var cors = require('cors')
 var articleCtrl = require('../controllers/article')
 var router = express.Router();
+
+router.use(cors())
 
 /* GET home page. */
 router.get('/', articleCtrl.get);
