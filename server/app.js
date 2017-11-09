@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://jason:123@livecode-shard-00-00-lxx5a.mongodb.net:27017,livecode-shard-00-01-lxx5a.mongodb.net:27017,livecode-shard-00-02-lxx5a.mongodb.net:27017/test?ssl=true&replicaSet=livecode-shard-0&authSource=admin');
+mongoose.connect('mongodb://jason:123@livecode-shard-00-00-lxx5a.mongodb.net:27017,livecode-shard-00-01-lxx5a.mongodb.net:27017,livecode-shard-00-02-lxx5a.mongodb.net:27017/test?ssl=true&replicaSet=livecode-shard-0&authSource=admin', { useMongoClient: true });
 
 var index = require('./routes/index');
 var users = require('./routes/users');

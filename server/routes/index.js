@@ -1,9 +1,12 @@
 var express = require('express');
+var articleCtrl = require('../controllers/article')
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.get('/', articleCtrl.get);
+
+router.get('/:id/details', articleCtrl.getOne)
+
+router.post('/', articleCtrl.post)
 
 module.exports = router;
