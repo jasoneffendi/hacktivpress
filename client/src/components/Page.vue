@@ -10,7 +10,7 @@
       </select>
       </div>
       <button class="btn btn-secondary my-2 my-sm-0" @click.prevent="getByAuthor()">Get by author</button>
-      <button class="btn btn-secondary my-2 my-sm-0" @click.prevent="getArticles()">Get all</button>
+      <button class="btn btn-secondary my-2 my-sm-0" @click.prevent="getArticles()">RESET</button>
 </form>
     <router-view
     :content="content">

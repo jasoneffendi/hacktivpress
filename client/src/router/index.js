@@ -17,6 +17,11 @@ export default new Router({
       component: Post
     },
     {
+      path: '/register',
+      name: 'register',
+      component: Register
+    },
+    {
       path: '/',
       component: Page,
       children: [
@@ -35,11 +40,6 @@ export default new Router({
       path: '/hello',
       name: 'Hello',
       component: HelloWorld
-    },
-    {
-      path: '/register',
-      name: 'register',
-      component: Register
     }
   ]
 })
